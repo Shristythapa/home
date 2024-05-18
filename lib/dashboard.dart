@@ -1,4 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:home_sys/fan.dart';
@@ -14,6 +16,31 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  DatabaseReference? _databaseReference;
+  double waterTemp = 0.0;
+  dynamic sensorData;
+
+  @override
+  void initState() {
+    super.initState();
+    initializeFirebase();
+  }
+
+  Future<void> initializeFirebase() async {
+    await Firebase.initializeApp();
+    _databaseReference =
+        FirebaseDatabase.instance.reference().child("/temperature");
+    _databaseReference!.onValue.listen((event) {
+      final data = event.snapshot.value;
+      if (data != null) {
+        setState(() {
+          waterTemp = double.parse(data.toString());
+          sensorData = waterTemp;
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -90,9 +117,9 @@ class _DashboardState extends State<Dashboard> {
                       ),
                       minimumSize: const Size(180, 150),
                     ),
-                    child: const Text(
-                      'Temp: ',
-                      style: TextStyle(color: Colors.white),
+                    child: Text(
+                      'Temp: $sensorData ',
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                 ],
