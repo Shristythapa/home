@@ -82,9 +82,19 @@ class _DashboardState extends State<Dashboard> {
                       ),
                       minimumSize: const Size(180, 150),
                     ),
-                    child: const Text(
-                      'Light',
-                      style: TextStyle(color: Colors.white),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Image.asset(
+                          'assets/light.png', // Replace with your image path
+                          width: 60,
+                          height: 60,
+                        ),
+                        const Text(
+                          'Light',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
                     ),
                   ),
                   ElevatedButton(
@@ -103,9 +113,19 @@ class _DashboardState extends State<Dashboard> {
                       ),
                       minimumSize: const Size(180, 150),
                     ),
-                    child: const Text(
-                      'Fan',
-                      style: TextStyle(color: Colors.white),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Image.asset(
+                          'assets/fan.png', // Replace with your image path
+                          width: 60,
+                          height: 60,
+                        ),
+                        const Text(
+                          'Fan',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
                     ),
                   ),
                   ElevatedButton(
@@ -117,9 +137,19 @@ class _DashboardState extends State<Dashboard> {
                       ),
                       minimumSize: const Size(180, 150),
                     ),
-                    child: Text(
-                      'Temp: $sensorData ',
-                      style: const TextStyle(color: Colors.white),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Image.asset(
+                          'assets/waterTemperature.png', // Replace with your image path
+                          width: 60,
+                          height: 60,
+                        ),
+                        Text(
+                          'Temp: $sensorData ',
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      ],
                     ),
                   ),
                 ],
